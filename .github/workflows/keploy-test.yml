@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Demo Keploy CI/CD Integration
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  keploy_test_case:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Test-Report
+        uses: keploy/testgpt@main
+        with:
+          working-directory: /express-mongoose
+          delay: 10
+          command: "node src/app.js"
