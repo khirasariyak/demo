@@ -15,11 +15,10 @@ jobs:
   keploy_test_case:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Test-Report
-        uses: keploy/testgpt@main
-        with:
-          working-directory: express-mongoose
-          delay: 10
-          command: "node src/app.js"
+      - name: Install Keploy CLI
+        run: |
+          curl --silent -L https://keploy.io/ent/install.sh | bash
+      - name: Run Keploy Test Suite
+        run: |
+          export KEPLOY_API_KEY=${{ secrets.KEPLOY_API_KEY }}
+          keploy test-suite --app=bfce998b-18bd-466b-82e3-6d6e0f29db65 --base-path https:/petclinic-hosted.keploy.io/1234234325/api/ --cloud
