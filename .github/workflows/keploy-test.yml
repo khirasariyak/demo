@@ -20,6 +20,6 @@ jobs:
       - name: Test-Report
         uses: keploy/testgpt@main
         with:
-          working-directory: /express-mongoose
+          working-directory: express-mongoose
           delay: 10
           command: "node src/app.js"
